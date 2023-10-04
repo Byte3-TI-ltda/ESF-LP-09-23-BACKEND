@@ -10,7 +10,7 @@ export class ContactCreateDto implements ContactInterface {
     })
     @IsNotEmpty()
     @IsString()
-    firstname: string;
+    firstName: string;
 
     @ApiProperty({
         description: 'sobrenome do contato',
@@ -18,7 +18,7 @@ export class ContactCreateDto implements ContactInterface {
     })
     @IsNotEmpty()
     @IsString()
-    lastname: string;
+    lastName: string;
 
     @ApiProperty({
         description: 'email do contato',

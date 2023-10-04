@@ -14,7 +14,7 @@ export class EmailService {
           to: contact.email,
           subject: 'Se inscreva em nosso canal do YouTube! 🎥🌎',
           html: `
-          <h1>Olá, ${contact.firstname}</h1>
+          <h1>Olá, ${contact.firstName}</h1>
           <p>Muito obrigado por preencher nosso formulário. Abaixo seguem os links de nossas redes sociais. Siga-nos e fique por dentro de todas as novidades!</p>
         `,
         })
