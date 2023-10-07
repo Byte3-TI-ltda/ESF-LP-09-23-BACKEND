@@ -2,8 +2,9 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { ContactInterface } from '../entities/contact.entity';
 import { IsValidEmail } from '../decorators/is-valid-email.decorator';
+import { DefaultDto } from 'src/common/dtos/default.dto';
 
-export class ContactCreateDto implements ContactInterface {
+export class ContactCreateDto extends DefaultDto implements ContactInterface {
     @ApiProperty({
         description: 'primeiro nome do contato',
         example: 'John',

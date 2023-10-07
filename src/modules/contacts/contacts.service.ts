@@ -20,11 +20,16 @@ export class ContactsService {
 
   async create(dto: ContactCreateDto): Promise<any> {
     return new Promise<void>(async (resolve, reject) => {
+      const createdAt = new Date();
+      const dto_: ContactCreateDto = {
+        ...dto,
+        createdAt: createdAt.toISOString()
+      }
       await this.collection
-        .add(dto)
+        .add(dto_)
         .then((data: any) => {
-          this.logger.log("\u2193", JSON.stringify(data));
-          this.eventEmitter.emit('contact.created', dto);
+          this.logger.log("contact created \u2193", JSON.stringify(dto_));
+          this.eventEmitter.emit('contact.created', dto_);
           resolve(data);
         })
         .catch((error) => {
