@@ -8,6 +8,7 @@ import firebaseConfig from './common/configs/firebase.config';
 import { FirebaseModule } from './modules/firebase/firebase.module';
 import mailerConfig from './common/configs/mailer.config';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { EventEmitterModule } from '@nestjs/event-emitter';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
 
@@ -15,6 +16,7 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
   imports: [
     ContactsModule,
     FirebaseModule,
+    EventEmitterModule.forRoot(),
     ConfigModule.forRoot({
       envFilePath: envFilePath,
       isGlobal: true,
@@ -39,4 +41,4 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

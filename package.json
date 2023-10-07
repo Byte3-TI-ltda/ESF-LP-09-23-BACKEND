@@ -24,6 +24,7 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
+    "@nestjs/event-emitter": "^2.0.2",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/swagger": "^7.1.12",
     "class-transformer": "^0.5.1",

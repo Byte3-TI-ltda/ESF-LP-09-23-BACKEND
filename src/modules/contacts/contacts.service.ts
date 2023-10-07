@@ -2,7 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { Contact } from './entities/contact.entity';
 import { ContactCreateDto } from './dtos/contact-create.dto';
 import { app } from 'firebase-admin';
-import { EmailService } from '../email/email.service';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 
 @Injectable()
 export class ContactsService {
@@ -12,7 +12,7 @@ export class ContactsService {
 
   constructor(
     @Inject('FIREBASE_APP') private firebaseApp: app.App,
-    private emailService: EmailService,
+    private eventEmitter: EventEmitter2
   ) {
     this.db = firebaseApp.firestore();
     this.collection = this.db.collection('contacts');
@@ -23,15 +23,15 @@ export class ContactsService {
       await this.collection
         .add(dto)
         .then((data: any) => {
-          this.logger.log(data);
-          this.emailService.sendMail(dto);
+          this.logger.log("\u2193", JSON.stringify(data));
+          this.eventEmitter.emit('contact.created', dto);
           resolve(data);
         })
         .catch((error) => {
           this.logger.error(error);
           reject(error);
         })
-        .finally(() => {});
+        .finally(() => { });
     });
   }
 

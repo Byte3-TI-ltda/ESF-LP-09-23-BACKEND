@@ -4,10 +4,10 @@ import { Contact } from '../contacts/entities/contact.entity';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class EmailService {
-  constructor(private mailerService: MailerService) {}
+  constructor(private mailerService: MailerService) { }
 
-  async sendMail(contact: Contact): Promise<void> {
-    new Promise(async (resolve, reject) => {
+  async sendMail(contact: Contact): Promise<any> {
+    return new Promise(async (resolve, reject) => {
       await this.mailerService
         .sendMail({
           from: 'Exploradores Sem Fronteiras <esf.firebase@gmail.com>',
