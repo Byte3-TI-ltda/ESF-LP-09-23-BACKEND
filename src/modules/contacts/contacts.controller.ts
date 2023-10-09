@@ -3,12 +3,14 @@ import {
     Controller,
     Get,
     Post,
+    UseGuards,
     UsePipes,
     ValidationPipe,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ContactsService } from './contacts.service';
 import { ContactCreateDto } from './dtos/contact-create.dto';
+import { FirebaseAuthGuard } from '../auth/guards/firebase-auth.guard';
 
 @Controller('contacts')
 @ApiTags('contacts')
@@ -25,6 +27,7 @@ export class ContactsController {
         return await this.contactsService.create(dto);
     }
 
+    @UseGuards(FirebaseAuthGuard)
     @Get('list')
     @ApiOperation({
         summary: 'list',

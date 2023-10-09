@@ -9,6 +9,8 @@ import { FirebaseModule } from './modules/firebase/firebase.module';
 import mailerConfig from './common/configs/mailer.config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { PassportModule } from '@nestjs/passport';
+import { FirebaseAuthStrategy } from './modules/auth/strategies/firebase-auth.strategy';
 
 const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
 
@@ -37,8 +39,9 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
       }),
       inject: [ConfigService],
     }),
+    PassportModule.register({ defaultStrategy: 'firebase-jwt' })
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, FirebaseAuthStrategy],
 })
 export class AppModule { }
