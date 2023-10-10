@@ -28,12 +28,11 @@ const envFilePath: string = getEnvPath(`${__dirname}/common/envs/`);
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         transport: {
-          service: configService.get<string>('mailerConfig.transport_service'),
+          service: 'gmail',
           auth: {
-            user: configService.get<string>('mailerConfig.transport_auth_user'),
-            pass: configService.get<string>('mailerConfig.transport_auth_pass'),
+            user: configService.get<string>('mailerConfig.user'),
+            pass: configService.get<string>('mailerConfig.pass'),
           },
-          ignoreTLS: true,
         },
         defaults: {},
       }),
